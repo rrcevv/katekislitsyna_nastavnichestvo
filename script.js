@@ -163,3 +163,18 @@ if (resultsTrack) {
   window.addEventListener('resize', syncGallery, {passive:true});
   syncGallery();
 }
+
+// Show the participation terms inside this page, including on touch screens.
+const conditionsLink = document.querySelector('.hero .button[href="#join"]');
+if (conditionsLink) {
+  conditionsLink.addEventListener('click', event => {
+    const section = document.getElementById('join');
+    if (!section) return;
+    event.preventDefault();
+    stopWheel();
+    const destination = section.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({top: destination, behavior: reducedMotion.matches ? 'instant' : 'smooth'});
+    section.focus({preventScroll:true});
+    window.history.replaceState(null, '', '#join');
+  });
+}
