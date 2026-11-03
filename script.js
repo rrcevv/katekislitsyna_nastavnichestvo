@@ -12,10 +12,28 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
 }
 
 const scenes = [...document.querySelectorAll('main > section')];
+const mobileLayout = window.matchMedia('(max-width: 900px), (pointer: coarse)');
+let sceneViewportHeight = 0;
+let sceneViewportWidth = 0;
+function stableViewportHeight() {
+  const probe = document.createElement('div');
+  probe.style.cssText = 'position:fixed;height:100svh;width:0;visibility:hidden;pointer-events:none';
+  document.body.appendChild(probe);
+  const height = probe.getBoundingClientRect().height || window.innerHeight;
+  probe.remove();
+  return height;
+}
 function sizeScenes() {
+  // Browser toolbar changes must not move sticky boundaries on touch screens.
+  if (!mobileLayout.matches || !sceneViewportHeight || sceneViewportWidth !== window.innerWidth) {
+    sceneViewportHeight = mobileLayout.matches ? stableViewportHeight() : window.innerHeight;
+    sceneViewportWidth = window.innerWidth;
+  }
+  if (mobileLayout.matches) document.documentElement.style.setProperty('--mobile-screen-height', `${sceneViewportHeight}px`);
+  else document.documentElement.style.removeProperty('--mobile-screen-height');
   scenes.forEach(scene => {
     // Tall scenes scroll completely before holding for the next scene.
-    const offset = Math.min(0, window.innerHeight - scene.offsetHeight);
+    const offset = Math.min(0, sceneViewportHeight - scene.offsetHeight);
     scene.style.setProperty('--stack-top', `${offset}px`);
   });
 }
@@ -51,18 +69,24 @@ function renderStack(now) {
   if (!settling) previousFrame = 0;
 }
 function scheduleStack() {
-  if (!reducedMotion.matches && !motionFrame) motionFrame = requestAnimationFrame(renderStack);
+  if (!reducedMotion.matches && !mobileLayout.matches && !motionFrame) motionFrame = requestAnimationFrame(renderStack);
 }
 window.addEventListener('scroll', scheduleStack, { passive: true });
 window.addEventListener('resize', scheduleStack, { passive: true });
-reducedMotion.addEventListener('change', () => {
-  if (reducedMotion.matches) {
+function resetStackMotion() {
+  if (reducedMotion.matches || mobileLayout.matches) {
     cancelAnimationFrame(motionFrame);
     motionFrame = 0;
     previousFrame = 0;
     sceneMotion.fill(0);
     scenes.forEach(scene => scene.classList.remove('stack-active'));
   } else scheduleStack();
+}
+reducedMotion.addEventListener('change', resetStackMotion);
+mobileLayout.addEventListener('change', () => {
+  sceneViewportHeight = 0;
+  sizeScenes();
+  resetStackMotion();
 });
 scheduleStack();
 

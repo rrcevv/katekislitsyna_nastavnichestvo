@@ -45,3 +45,14 @@ html{scroll-behavior:auto}
 .hero .portrait img{object-position:50% 18%}
 .hero::after{background:linear-gradient(180deg,rgba(0,0,0,.15),transparent 40%,rgba(0,0,0,.65)),linear-gradient(90deg,rgba(0,0,0,.35),transparent 75%)}
 @media(max-width:620px){.hero .intro{margin-top:auto}.hero .portrait img{object-position:58% 50%}.hero::after{background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 42%,rgba(0,0,0,.72))}}
+
+/* Keep touch scrolling native: no animated transform on sticky photo planes. */
+@media(max-width:900px),(pointer:coarse){
+ .js main>section.stack-active{transform:none;will-change:auto}
+ .hero .portrait img{animation:none}
+}
+
+@media(max-width:900px),(pointer:coarse){
+ .hero{height:var(--mobile-screen-height,100svh)}
+ main>.statement,main>.result{min-height:calc(var(--mobile-screen-height,100svh) * .8)}
+}
