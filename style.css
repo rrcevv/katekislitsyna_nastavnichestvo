@@ -135,3 +135,5 @@ main>.result{padding-top:80px;padding-bottom:80px}
 .price-block>.price-label{font-size:22px;line-height:1.4;color:var(--paper);margin:0 0 16px}
 
 .price-block>.admission-statement{margin:28px 0 22px}.price-block>.button.light{background:var(--paper);border-color:var(--paper);color:var(--ink)}.price-block>.button.light:hover{background:#e8e2d7;border-color:#e8e2d7}
+
+.price-block .bonus{border-radius:10px}
