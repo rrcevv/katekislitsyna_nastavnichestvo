@@ -82,3 +82,24 @@ main>.section{min-height:max(720px,100svh);overflow:clip;padding-top:clamp(110px
  .price-block .bonus p{font-size:20px}
  .join-bottom{margin-top:80px}
 }
+
+.results-gallery{grid-column:1/-1;min-width:0;width:100%;margin-top:52px}
+.result.section{row-gap:0}
+.gallery-controls{display:flex;gap:10px;justify-content:flex-end;margin-bottom:22px}
+.gallery-controls button{width:48px;height:44px;display:grid;place-items:center;border:1px solid var(--ink);border-radius:0;background:transparent;color:var(--ink);cursor:pointer;transition:background .2s,color .2s}
+.gallery-controls button:hover{background:var(--ink);color:var(--paper)}
+.gallery-controls button:disabled{opacity:.3;cursor:default;background:transparent;color:var(--ink)}
+.gallery-prev svg{transform:rotate(180deg)}
+.results-track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 48px)/3);gap:24px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:thin;padding-bottom:16px;align-items:start}
+.result-shot{display:block;scroll-snap-align:start;min-width:0}
+.result-shot img{display:block;width:100%;height:300px;object-fit:contain;object-position:center top;background:#f0eff5}
+.results-track:focus-visible,.result-shot:focus-visible,.gallery-controls button:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+@media(max-width:900px){.results-track{grid-auto-columns:calc((100% - 24px)/2)}.result-shot img{height:280px}}
+@media(max-width:620px){.results-gallery{margin-top:42px}.gallery-controls{margin-bottom:18px}.results-track{grid-auto-columns:88%;gap:16px}.result-shot img{height:auto;aspect-ratio:1.13;object-fit:contain}}
+
+main>.result{padding-top:80px;padding-bottom:80px}
+.result.section{row-gap:36px}
+.results-gallery{margin-top:0}
+.gallery-controls{margin-bottom:16px}
+.result-shot img{height:260px}
+@media(max-width:620px){main>.result{padding-top:56px;padding-bottom:56px}.result.section{row-gap:24px}.results-gallery{margin-top:0}.result .text-link{margin-top:24px}.result-shot img{height:auto;aspect-ratio:1.13}}

@@ -136,3 +136,30 @@ window.addEventListener('keydown', event => {
 });
 window.addEventListener('resize', stopWheel, {passive: true});
 reducedMotion.addEventListener('change', stopWheel);
+
+// Native swipe on phones; simple buttons and keyboard support on larger screens.
+const resultsTrack = document.querySelector('.results-track');
+if (resultsTrack) {
+  const previous = document.querySelector('.gallery-prev');
+  const next = document.querySelector('.gallery-next');
+  const syncGallery = () => {
+    previous.disabled = resultsTrack.scrollLeft < 2;
+    next.disabled = resultsTrack.scrollLeft + resultsTrack.clientWidth >= resultsTrack.scrollWidth - 2;
+  };
+  const moveGallery = direction => {
+    const shot = resultsTrack.querySelector('.result-shot');
+    const gap = parseFloat(getComputedStyle(resultsTrack).columnGap) || 0;
+    resultsTrack.scrollBy({left: direction * (shot.getBoundingClientRect().width + gap), behavior: reducedMotion.matches ? 'instant' : 'smooth'});
+  };
+  previous.addEventListener('click', () => moveGallery(-1));
+  next.addEventListener('click', () => moveGallery(1));
+  resultsTrack.addEventListener('scroll', syncGallery, {passive:true});
+  resultsTrack.addEventListener('keydown', event => {
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+      event.preventDefault();
+      moveGallery(event.key === 'ArrowRight' ? 1 : -1);
+    }
+  });
+  window.addEventListener('resize', syncGallery, {passive:true});
+  syncGallery();
+}
