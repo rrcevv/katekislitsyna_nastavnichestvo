@@ -137,3 +137,5 @@ main>.result{padding-top:80px;padding-bottom:80px}
 .price-block>.admission-statement{margin:28px 0 22px}.price-block>.button.light{background:var(--paper);border-color:var(--paper);color:var(--ink)}.price-block>.button.light:hover{background:#e8e2d7;border-color:#e8e2d7}
 
 .price-block .bonus{border-radius:10px}
+
+.hero h1 .hero-accent{font-weight:700;color:#e7cdb2;margin-top:.13em}
