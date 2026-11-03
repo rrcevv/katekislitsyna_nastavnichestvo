@@ -114,9 +114,15 @@ main>.result{padding-top:80px;padding-bottom:80px}
 .result-shot dt{font-size:14px;line-height:1.4;color:var(--muted);margin-bottom:8px}
 .result-shot dd{margin:0;font-size:18px;line-height:1.4}
 .student-before dd{color:var(--muted)}
-.student-original{font-size:14px;line-height:1.4;text-decoration:underline;text-underline-offset:4px;min-height:44px;display:flex;align-items:flex-end;margin-top:auto;color:var(--muted);width:fit-content}
-.student-original:hover{color:var(--ink)}
+.student-details{font-size:14px;line-height:1.4;text-decoration:underline;text-underline-offset:4px;min-height:44px;display:flex;align-items:flex-end;margin-top:auto;color:var(--muted);width:fit-content}
+.student-details:hover{color:var(--ink)}
 @media(max-width:900px){.results-track{grid-auto-columns:calc((100% - 20px)/2)}}
 @media(max-width:620px){.results-track{grid-auto-columns:90%;gap:14px}.result-shot{padding:24px;min-height:380px}.result-shot h3{font-size:23px}.result-shot dd{font-size:18px}.result-shot header{min-height:60px}}
 
 .result-shot{padding:24px}.result-shot header{min-height:56px}.result-shot dl{margin:20px 0 18px;gap:18px}.result-shot dt{margin-bottom:6px}@media(max-width:620px){.result-shot{padding:22px}.result-shot header{min-height:56px}}
+
+.button,.gallery-controls button{border-radius:6px}
+.hero .admission-note{font-size:16px;line-height:1.4;margin-top:14px;color:#faf8f2;max-width:450px}
+.join-bottom .admission-statement{font-size:25px;line-height:1.35;color:var(--paper);max-width:760px;margin:24px 0 18px}
+.join-bottom>p:not(.admission-statement){max-width:680px;margin:0 0 30px}
+@media(max-width:620px){.hero .admission-note{font-size:15px;max-width:300px}.join-bottom .admission-statement{font-size:22px}.join-bottom>p:not(.admission-statement){line-height:1.55}}
