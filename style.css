@@ -19,3 +19,29 @@ main>section{position:sticky;top:var(--stack-top,0px);background:var(--paper);is
 .price-block>p.investment{font-size:25px;line-height:1.35;color:var(--paper);max-width:460px;margin:26px 0 20px}.investment-detail{max-width:460px;margin-bottom:24px}@media(max-width:620px){.price-block>p.investment{font-size:23px}}
 
 html{scroll-behavior:auto}
+
+/* A photographic opening: image and copy share the very first screen. */
+.hero{display:grid;grid-template-columns:1fr;height:100svh;min-height:720px;max-height:none;overflow:hidden;color:var(--paper)}
+.hero .portrait{position:absolute;inset:0;width:100%;height:100%;max-height:none;z-index:0}
+.hero .portrait img{filter:grayscale(1);object-position:50% 32%}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.63),rgba(0,0,0,.18) 65%,rgba(0,0,0,.08))}
+.hero .hero-copy{position:relative;z-index:2;min-height:0;padding:48px 4vw;justify-content:flex-start}
+.hero .hero-main{padding:0;max-width:720px}
+.hero h1{font-size:clamp(44px,4.3vw,76px)}
+.hero h1 .muted{color:var(--paper)}
+.hero .intro{margin:28px 0 30px}
+.hero .button:hover{background:var(--paper);color:var(--ink)}
+@media(max-width:620px){
+ .hero{min-height:650px;height:100svh}
+ .hero .hero-copy{padding:32px 24px}
+ .hero h1{font-size:clamp(34px,8.7vw,48px)}
+ .hero .intro{font-size:18px;line-height:1.45;margin:23px 0 25px}
+ .hero .portrait img{object-position:58% 50%}
+ .hero::after{background:linear-gradient(180deg,rgba(0,0,0,.54),rgba(0,0,0,.2) 48%,rgba(0,0,0,.05))}
+}
+.hero .hero-copy{height:100%}
+.hero .hero-main{display:flex;flex-direction:column;align-items:flex-start;width:100%;height:100%}
+.hero .intro{margin-top:auto}
+.hero .portrait img{object-position:50% 18%}
+.hero::after{background:linear-gradient(180deg,rgba(0,0,0,.15),transparent 40%,rgba(0,0,0,.65)),linear-gradient(90deg,rgba(0,0,0,.35),transparent 75%)}
+@media(max-width:620px){.hero .intro{margin-top:auto}.hero .portrait img{object-position:58% 50%}.hero::after{background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 42%,rgba(0,0,0,.72))}}
