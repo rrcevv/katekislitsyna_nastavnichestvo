@@ -103,3 +103,20 @@ main>.result{padding-top:80px;padding-bottom:80px}
 .gallery-controls{margin-bottom:16px}
 .result-shot img{height:260px}
 @media(max-width:620px){main>.result{padding-top:56px;padding-bottom:56px}.result.section{row-gap:24px}.results-gallery{margin-top:0}.result .text-link{margin-top:24px}.result-shot img{height:auto;aspect-ratio:1.13}}
+
+/* Student stories share the site's paper, typography and hairline borders. */
+.results-track{align-items:stretch;scrollbar-color:#b9b3a8 transparent;gap:20px;grid-auto-columns:calc((100% - 40px)/3)}
+.result-shot{border:1px solid #c5bfb4;background:var(--paper);padding:26px;display:flex;flex-direction:column;min-height:360px}
+.result-shot header{min-height:64px}
+.result-shot h3{font-size:23px;line-height:1.15}
+.student-role{font-size:15px;line-height:1.4;color:var(--muted);margin-top:9px}
+.result-shot dl{margin:24px 0 26px;display:grid;gap:22px}
+.result-shot dt{font-size:14px;line-height:1.4;color:var(--muted);margin-bottom:8px}
+.result-shot dd{margin:0;font-size:18px;line-height:1.4}
+.student-before dd{color:var(--muted)}
+.student-original{font-size:14px;line-height:1.4;text-decoration:underline;text-underline-offset:4px;min-height:44px;display:flex;align-items:flex-end;margin-top:auto;color:var(--muted);width:fit-content}
+.student-original:hover{color:var(--ink)}
+@media(max-width:900px){.results-track{grid-auto-columns:calc((100% - 20px)/2)}}
+@media(max-width:620px){.results-track{grid-auto-columns:90%;gap:14px}.result-shot{padding:24px;min-height:380px}.result-shot h3{font-size:23px}.result-shot dd{font-size:18px}.result-shot header{min-height:60px}}
+
+.result-shot{padding:24px}.result-shot header{min-height:56px}.result-shot dl{margin:20px 0 18px;gap:18px}.result-shot dt{margin-bottom:6px}@media(max-width:620px){.result-shot{padding:22px}.result-shot header{min-height:56px}}
